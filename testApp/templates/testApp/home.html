@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Utama Paduka (Tanpa Gaya)</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <button class="menu-btn">☰</button>
+            <img src="{% static 'images/youtube.webp' %}" alt="Logo YT"> <span class="logo-text">PadukaTube</span>
+        </div>
+        <div class="search-area">
+            <input type="text" placeholder="Telusuri...">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="user-area">
+            <button class="icon-btn">🔔</button>
+            <div class="user-avatar">P</div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">🏠 Beranda</a></li>
+                    <li><a href="{% url 'feedback' %}">� Feedback</a></li>
+                    <li><a href="#">📺 Subscription</a></li>
+                    <hr>
+                    <li><a href="#">📚 Anda</a></li>
+                    <li><a href="#">🕒 Histori</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <section class="video-grid">
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="{% static 'images/1.jpg' %}" alt="Thumbnail"> <span class="video-time">10:05</span>
+                </div>
+                <div class="video-info">
+                    <div class="channel-avatar">P</div>
+                    <div class="text-details">
+                        <h3 class="video-title">Cara memindahkan tanggung jawab</h3>
+                        <p class="channel-name">Saluran Paduka</p>
+                        <p class="video-stats">100 rb ditonton • 2 hari yang lalu</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="{% static 'images/2.jpg' %}" alt="Thumbnail"> <span class="video-time">08:20</span>
+                </div>
+                <div class="video-info">
+                    <div class="channel-avatar">A</div>
+                    <div class="text-details">
+                        <h3 class="video-title">cara agar menarik perhatian</h3>
+                        <p class="channel-name">Ahli Web</p>
+                        <p class="video-stats">50 rb ditonton • 1 jam yang lalu</p>
+                    </div>
+                </div>
+            </div>
+            
+            </section>
+    </main>
+
+</body>
+</html>     

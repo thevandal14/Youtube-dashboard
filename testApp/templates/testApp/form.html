@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback untuk Paduka</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 100px auto;
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 4px;
+        }
+        .submit-btn {
+            background-color: #3ea6ff;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2 style="color: aliceblue;">Kirim Feedback</h2>
+        {% if status == 'success' %}
+            <p style="color: #2ecc71;">Terima kasih, Paduka! Feedback telah tersimpan.</p>
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %} <input type="text" name="nama" placeholder="Nama Anda" required>
+            <input type="email" name="email" placeholder="Email Anda" required>
+            <textarea name="pesan" rows="5" placeholder="Tulis pesan..." required></textarea>
+            <button type="submit" class="submit-btn">Kirim Sekarang</button>
+        </form>
+        <br>
+        <a href="{% url 'home' %}" style="color: #aaa; font-size: 14px;">← Kembali ke Beranda</a>
+    </div>
+
+</body>
+</html>
