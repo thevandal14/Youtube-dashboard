@@ -5,6 +5,9 @@ from .models import Feedback
 def home(request):
     return render(request, 'testApp/home.html')
 
+def about(request):
+    return render(request, 'testApp/about.html')
+
 def feedback_view(request):
     if request.method == 'POST':
         # Mengambil data dari form

@@ -1,0 +1,303 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang PadukaTube - Eksperimen Django Modern</title>
+    
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- Reset & Font Global khusus untuk halaman ini --- */
+        body {
+            font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
+            overflow-x: hidden;
+        }
+
+        /* --- Container Utama dengan Efek Latar Belakang Gradasi --- */
+        /* Ganti di dalam tag <style> pada about.html */
+        .about-container {
+            max-width: 900px;
+            width: 90%;
+            /* JANGAN gunakan margin-top, gunakan padding pada wrapper atau margin-bottom saja */
+            margin: 0 auto; 
+            padding-top: 40px; 
+            position: relative;
+        }
+
+        .about-page-wrapper {
+            /* Pastikan wrapper pembungkusnya menutupi seluruh layar */
+            width: 100%;
+            min-height: 100vh;
+            background: #0f0f0f; /* Samakan dengan warna body */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- Dekorasi Latar Belakang (Elemen Berpendar) --- */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.15;
+        }
+        .blob-1 {
+            background-color: #3ea6ff; /* Biru YouTube */
+            width: 300px; height: 300px;
+            top: -50px; left: -100px;
+        }
+        .blob-2 {
+            background-color: #ff0000; /* Merah YouTube */
+            width: 250px; height: 250px;
+            bottom: -20px; right: -80px;
+        }
+
+        /* --- Header Halaman (Modern & Terpusat) --- */
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #aaaaaa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .about-header p {
+            color: #aaaaaa;
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* --- Kartu Utama dengan Efek Glassmorphism --- */
+        .card-about {
+            background: rgba(40, 40, 40, 0.6); /* Transparan */
+            backdrop-filter: blur(15px); /* Efek Buram Kaca */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08); /* Garis tepi halus */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-about:hover {
+            transform: translateY(-5px); /* Efek mengangkat saat hover */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-about h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-about h2 i {
+            color: #ff0000; /* Ikon Merah */
+        }
+
+        .card-about p {
+            color: #cccccc;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* --- Grid Misi yang Interaktif --- */
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .mission-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .mission-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(62, 166, 255, 0.5); /* Tepi Biru saat hover */
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            background: linear-gradient(45deg, #3ea6ff, #ff0000);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .mission-item h3 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .mission-item p {
+            font-size: 0.9rem;
+            color: #aaaaaa;
+            margin-bottom: 0;
+        }
+
+        /* --- Elemen Pembatas (Line) --- */
+        .cool-hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.1), rgba(255,255,255,0));
+            margin: 40px 0;
+        }
+
+        /* --- Bagian Kontak Pengembang --- */
+        .developer-section h2 {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .developer-section h2 i {
+            color: #3ea6ff; /* Ikon Biru */
+        }
+
+        .contact-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        /* --- Tombol Kembali ke Beranda (Keren) --- */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #3ea6ff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .back-link:hover {
+            color: #ffffff; /* Berubah Putih saat hover */
+        }
+
+        /* Tombol Aksi Tambahan ke Feedback */
+        .feedback-btn {
+            background: linear-gradient(45deg, #ff0000, #b00000);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+        }
+
+        .feedback-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        /* --- Media Queries untuk Responsivitas --- */
+        @media (max-width: 768px) {
+            .about-header h1 { font-size: 2.5rem; }
+            .card-about { padding: 30px; }
+            .mission-grid { grid-template-columns: 1fr; }
+            .contact-action { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="about-page-wrapper">
+        <div class="about-container">
+            
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+
+            <div class="about-header">
+                <h1>Tentang Kami</h1>
+                <p>Mengenal lebih jauh visi dan misi PadukaTube</p>
+            </div>
+
+            <div class="card-about">
+                <section class="vision-section">
+                    <h2><i class="fab fa-youtube"></i> Visi Proyek</h2>
+                    <p>
+                        PadukaTube adalah platform eksperimental yang dibangun menggunakan kekuatan penuh **Django 4.2**. 
+                        Proyek ini tidak hanya meniru estetika mode gelap YouTube, tetapi juga bertujuan untuk menguasai 
+                        arsitektur web modern, pengelolaan file statis terpusat, dan integrasi database secara efisien.
+                    </p>
+                    
+                    <p>
+                        Ini adalah wujud dedikasi Paduka untuk menciptakan aplikasi web yang cepat, responsif, dan 
+                        memiliki pengalaman pengguna yang mulus.
+                    </p>
+                </section>
+
+                <div class="mission-grid">
+                    <div class="mission-item">
+                        <div class="mission-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>🚀 Kecepatan</h3>
+                        <p>Dibangun dengan optimasi server-side rendering khas Django.</p>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-icon"><i class="fas fa-palette"></i></div>
+                        <h3>🎨 Estetika</h3>
+                        <p>Antarmuka minimalis yang terinspirasi dari mode gelap YouTube.</p>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>🔒 Keamanan</h3>
+                        <p>Menerapkan standar keamanan Django seperti CSRF protection.</p>
+                    </div>
+                </div>
+
+                <hr class="cool-hr">
+
+                <section class="developer-section">
+                    <h2><i class="fas fa-code"></i> Kontak Pengembang</h2>
+                    <p>Jika Paduka memiliki saran, pertanyaan, atau ingin berkolaborasi lebih lanjut, silakan hubungi tim kami.</p>
+                    
+                    <div class="contact-action">
+                        <a href="{% url 'home' %}" class="back-link">
+                            <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+                        </a>
+                        <a href="{% url 'feedback' %}" class="feedback-btn">
+                            Kirim Masukan <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
